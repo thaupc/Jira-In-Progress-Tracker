@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jira In Progress Time Tracker</title>
+    <style>
+        body { font-family: sans-serif; width: 800px; padding: 10px; }
+        label { display: block; margin-top: 10px; font-weight: bold;}
+        input, select, button { width: 95%; padding: 5px; margin-top: 3px; }
+        button { background-color: #0052cc; color: white; border: none; cursor: pointer; font-weight: bold; padding: 8px; }
+        #export-btn { background-color: #177245; margin-top: 10px; } /* Green color for export button */
+        button:disabled { background-color: #ccc; cursor: not-allowed;}
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 12px;}
+        th, td { border: 1px solid #ccc; padding: 5px; text-align: left; vertical-align: top;}
+        tfoot td { font-weight: bold; background-color: #f2f2f2; }
+        #error-message { color: red; margin-top: 10px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <h3>Jira In Progress Time Tracker</h3>
+
+    <label for="jira-url">Jira URL:</label>
+    <input type="text" id="jira-url" placeholder="https://your-company.atlassian.net">
+
+    <label for="project-select">Project:</label>
+    <select id="project-select">
+        <option>Enter URL and click refresh</option>
+    </select>
+    <button id="refresh-projects-btn">Refresh Projects</button>
+
+    <label for="jql-query">JQL Query:</label>
+    <input type="text" id="jql-query" placeholder="e.g., status = Done">
+    <button id="query-btn">Query</button>
+
+    <div id="error-message"></div>
+
+    <hr>
+    
+    <div id="results-container" class="hidden">
+        <h3>Query Results</h3>
+        <table id="results-table">
+            <thead>
+                <tr><th>Key</th><th>Summary</th><th>Epic</th><th>Assignee</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        
+        <br>
+        <button id="extract-btn">Extract Time</button>
+
+        <h3>Time Analysis</h3>
+        <table id="time-results-table">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Summary</th>
+                    <th>Assignee</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>In Progress</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be inserted here -->
+            </tbody>
+            <tfoot>
+                <!-- The total summary row will be inserted here -->
+            </tfoot>
+        </table>
+
+        <!-- The new Export button -->
+        <button id="export-btn">Export to Excel</button>
+    </div>
+    
+    <!-- IMPORTANT: Include the SheetJS library BEFORE our main script -->
+    <script src="xlsx.full.min.js"></script>
+    <script src="report.js"></script>
+</body>
+</html>
