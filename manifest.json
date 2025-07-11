@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Jira In Progress Time Tracker",
-  "version": "2.2",
+  "version": "3.1",
   "description": "Calculates the time spent in the 'In Progress' status for Jira tickets.",
   "permissions": [
     "storage",
@@ -14,5 +14,6 @@
     "service_worker": "background.js"
   },
   "action": {
+    "default_icon": "icon.png"
   }
 }
